@@ -8,14 +8,14 @@ export default function Login({navigation}) {
     <SafeAreaView style={styles.container}>
       <View style={styles.containerWrapper}>
         <View style={styles.containerInput}>
-          <Input name="Email" type="text" placeholder="Email" />
+          <Input name="Email" onChange={()=>null} type="text" placeholder="Email" />
         </View>
         <View style={styles.containerInput}>
-          <Input name="Password" type="password" placeholder="Senha" />
+          <Input name="Password" onChange={()=>null} type="password" placeholder="Senha" />
         </View>
 
         <View style={styles.containerButton}>
-          <Button title="Log In" onPress={()=>alert('login')} />
+          <Button title="Log In" onChange={()=>null} onPress={()=>alert('login')} />
         </View>
 
         <TouchableOpacity style={styles.containerResetPassword} onPress={() => navigation.navigate('ResetPassword')}>
