@@ -2,22 +2,34 @@ import { StatusBar } from 'expo-status-bar'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
 import { StyleSheet, Text, View,SafeAreaView,TouchableOpacity } from 'react-native'
-
+import { Formik} from 'formik'
 export default function Login({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerWrapper}>
-        <View style={styles.containerInput}>
-          <Input name="Email" onChange={()=>null} type="text" placeholder="Email" />
-        </View>
-        <View style={styles.containerInput}>
-          <Input name="Password" onChange={()=>null} type="password" placeholder="Senha" />
-        </View>
+        <Formik initialValues={{Email: '', Password: ''}} onSubmit={(values)=> alert(values)}>
+          {
+            ({
+              handleChange,
+              handleSubmit,
+              values, 
+              errors,
+              isValid
+            }) => (<>
+            <View style={styles.containerInput}>
+              <Input name="Email" onChange={()=>null} type="text" placeholder="Email" />
+            </View>
+            <View style={styles.containerInput}>
+              <Input name="Password" onChange={()=>null} type="password" placeholder="Senha" />
+            </View>
+    
+            <View style={styles.containerButton}>
+              <Button title="Log In" onChange={()=>null} onPress={()=>alert('login')} />
+            </View>
+            </>)
+          }
 
-        <View style={styles.containerButton}>
-          <Button title="Log In" onChange={()=>null} onPress={()=>alert('login')} />
-        </View>
-
+        </Formik>
         <TouchableOpacity style={styles.containerResetPassword} onPress={() => navigation.navigate('ResetPassword')}>
           <Text style={styles.containerResetPasswordLinkContentText}>Esqueceu sua senha?</Text>
         </TouchableOpacity>

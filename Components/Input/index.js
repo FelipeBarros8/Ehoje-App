@@ -19,6 +19,7 @@ export default function Input({
     <View style={styles.container}>
       <TextInput
         {...rest}
+        name={name}
         style={{ ...styles.input, ...style }}
         onChangeText={(value)=>{
             setValueInput(value)

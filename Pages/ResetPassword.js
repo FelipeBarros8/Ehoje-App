@@ -10,20 +10,11 @@ export default function Home() {
       <View style={styles.containerInput}>
         <Input name="Email" type="text" placeholder="Email" />
       </View>
-      <View style={styles.containerInput}>
-        <Input name="CPF" type="text" placeholder="CPF" />
-      </View>
-      <View style={styles.containerInput}>
-        <Input name="Password" type="password" placeholder="Senha" />
-      </View>
 
       <View style={styles.containerButton}>
-        <Button title="Cadastrar-se" onPress={()=>alert('se cadastrou')} />
+        <Button title="Redefinir senha" onPress={()=>alert('se cadastrou')} />
       </View>
 
-      <TouchableOpacity style={styles.containerResetPassword} onPress={() => navigation.navigate('ResetPassword')}>
-        <Text style={styles.containerResetPasswordLinkContentText}>Esqueceu sua senha?</Text>
-      </TouchableOpacity>
     </View>
   </SafeAreaView>
   );
@@ -35,6 +26,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    paddingTop: '5%'
   },
   containerWrapper: {
     flex: 1,
