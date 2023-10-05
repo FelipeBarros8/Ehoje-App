@@ -2,7 +2,10 @@ import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
+import { Formik } from 'formik'
 import CheckBox from 'expo-checkbox'
+import {cadastroValidationSchema} from '../Validations/Form'
+
 import {
   StyleSheet,
   Text,
@@ -18,8 +21,20 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <View style={styles.containerWrapper}>
-        <View style={styles.containerInput}>
+        <Formik validationSchema={cadastroValidationSchema} initialValues={{Email: '', Password: '', CPF: ''}} onSubmit={(values)=> alert(values)}>
+          {
+            ({
+                handleChange,
+                handleSubmit,
+                values, 
+                errors,
+                isValid
+              })=>(
+
+              <>
+          <View style={styles.containerInput}>
           <Input name="Email" onChange={()=>null} type="text" placeholder="Email" />
         </View>
         <View style={styles.containerInput}>
@@ -33,16 +48,14 @@ export default function Home() {
           <CheckBox
             disabled={false}
             value={toggleCheckBox}
-            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-          />
+            onValueChange={(newValue) => setToggleCheckBox(newValue)}/>
           <Text style={styles.textTerms}>
             Estou ciente dos{' '}
             <Text
               onPress={() => {
                 Linking.openURL('https://reactnative.dev')
               }}
-              style={styles.textTermsLink}
-            >
+              style={styles.textTermsLink}>
               termos e políticas de privacidade{' '}
             </Text>
             e aceito todos eles.
@@ -52,6 +65,13 @@ export default function Home() {
         <View style={styles.containerButton}>
           <Button title="Cadastrar-se" onPress={() => alert('se cadastrou')} />
         </View>
+              </>
+            )
+          }
+
+        </Formik>
+
+
       </View>
     </SafeAreaView>
   )

@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
-import { StyleSheet, Text, View,SafeAreaView,TouchableOpacity } from 'react-native'
-import { Formik} from 'formik'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Formik } from 'formik'
+import { loginValidationSchema } from '../Validations/Form'
+
+
 export default function Login({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerWrapper}>
-        <Formik initialValues={{Email: '', Password: ''}} onSubmit={(values)=> alert(values)}>
+        <Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password: ''}} onSubmit={(values)=> alert(values)}>
           {
             ({
               handleChange,
@@ -17,14 +20,16 @@ export default function Login({navigation}) {
               isValid
             }) => (<>
             <View style={styles.containerInput}>
-              <Input name="Email" onChange={()=>null} type="text" placeholder="Email" />
+              <Input name="Email" onChange={handleChange('Email')} value={values.Email} type="text" placeholder="Email" />
+              {errors.Email && <Text style={styles.textError}>{errors.Email}</Text>}
             </View>
             <View style={styles.containerInput}>
-              <Input name="Password" onChange={()=>null} type="password" placeholder="Senha" />
+              <Input name="Password" onChange={handleChange('Password')} value={values.Password} type="password" placeholder="Senha" />
+              {errors.Password && <Text style={styles.textError}>{errors.Password}</Text>}
             </View>
     
             <View style={styles.containerButton}>
-              <Button title="Log In" onChange={()=>null} onPress={()=>alert('login')} />
+              <Button title="Log In" onPress={handleSubmit} />
             </View>
             </>)
           }
@@ -69,5 +74,8 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
+  },
+  textError: {
+    color: 'red'
   }
 })
