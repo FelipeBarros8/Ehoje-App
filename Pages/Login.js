@@ -10,7 +10,7 @@ export default function Login({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.containerWrapper}>
-        <Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password: ''}} onSubmit={(values)=> alert(values)}>
+        <Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password: ''}} onSubmit={(values)=> navigation.navigate('Home')}>
           {
             ({
               handleChange,

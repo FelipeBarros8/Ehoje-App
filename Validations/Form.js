@@ -11,6 +11,9 @@ export const cadastroValidationSchema = yup.object().shape({
     CPF: yup.string().min(11, ({min})=>`Coloque um cpf válido com no mínimo ${min} digitos`)
 })
 
+export const resetPasswordValidationSchema= yup.object().shape({
+    Email: yup.string().email("Por favor insira um e-mail válido."),
+})
 
 
 
