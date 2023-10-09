@@ -26,7 +26,7 @@ export default function Input({
             onChange(value)
         }}
         value={valueInput}
-        secureTextEntry={type !='password' ? false :visiblePassword}
+        secureTextEntry={type !='password' ? false :!visiblePassword}
         placeholder={placeholder}
       />
 

@@ -1,11 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
+import { CardComponent } from '../Components/Card/'
+
+
+const data=[
+  {nome: 'Bruno', tipoSanguineo:'AB+', id:1},
+  {nome: 'Marcos', tipoSanguineo:'O+', id:2},
+  {nome: 'Hiury', tipoSanguineo:'B-', id:3},
+  {nome: 'Luiza', tipoSanguineo:'A+', id:4}
+]
+
 
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <SafeAreaView>
+        <FlatList 
+        data={data}
+        renderItem={({item})=> <CardComponent nome={item.nome} tipoSanguineo={item.tipoSanguineo} />}
+        />
+      </SafeAreaView>
     </View>
   );
 }
