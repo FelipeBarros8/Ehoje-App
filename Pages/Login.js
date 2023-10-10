@@ -1,45 +1,50 @@
 import { StatusBar } from 'expo-status-bar'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ImageBackground } from 'react-native'
 import { Formik } from 'formik'
 import { loginValidationSchema } from '../Validations/Form'
+
+const image= require('../assets/images/capa.jpeg');
 
 
 export default function Login({navigation}) {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.containerWrapper}>
-        <Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password: ''}} onSubmit={(values)=> navigation.navigate('Home')}>
-          {
-            ({
-              handleChange,
-              handleSubmit,
-              values, 
-              errors,
-              isValid
-            }) => (<>
-            <View style={styles.containerInput}>
-              <Input name="Email" onChange={handleChange('Email')} value={values.Email} type="text" placeholder="Email" />
-              {errors.Email && <Text style={styles.textError}>{errors.Email}</Text>}
-            </View>
-            <View style={styles.containerInput}>
-              <Input name="Password" onChange={handleChange('Password')} value={values.Password} type="password" placeholder="Senha" />
-              {errors.Password && <Text style={styles.textError}>{errors.Password}</Text>}
-            </View>
-    
-            <View style={styles.containerButton}>
-              <Button title="Log In" onPress={handleSubmit} />
-            </View>
-            </>)
-          }
+        <SafeAreaView style={styles.container}>
+          <ImageBackground source={image} resizeMode='cover'style={styles.image}>
+            <View style={styles.containerWrapper}>
+              <Formik validationSchema={loginValidationSchema} initialValues={{Email: '', Password: ''}} onSubmit={(values)=> navigation.navigate('Home')}>
+              {
+                ({
+                  handleChange,
+                  handleSubmit,
+                  values, 
+                  errors,
+                  isValid
+                }) => (<>
+              <View style={styles.containerInput}>
+                <Input name="Email" onChange={handleChange('Email')} value={values.Email} type="text" placeholder="Email" />
+                {errors.Email && <Text style={styles.textError}>{errors.Email}</Text>}
+              </View>
+              <View style={styles.containerInput}>
+                <Input name="Password" onChange={handleChange('Password')} value={values.Password} type="password" placeholder="Senha" />
+                {errors.Password && <Text style={styles.textError}>{errors.Password}</Text>}
+              </View>
+      
+              <View style={styles.containerButton}>
+                <Button title="Log In" onPress={handleSubmit} />
+              </View>
+              </>)
+              }
 
-        </Formik>
-        <TouchableOpacity style={styles.containerResetPassword} onPress={() => navigation.navigate('ResetPassword')}>
-          <Text style={styles.containerResetPasswordLinkContentText}>Esqueceu sua senha?</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+            </Formik>
+            <TouchableOpacity style={styles.containerResetPassword} onPress={() => navigation.navigate('ResetPassword')}>
+              <Text style={styles.containerResetPasswordLinkContentText}>Esqueceu sua senha?</Text>
+            </TouchableOpacity>
+          </View>
+          </ImageBackground>
+        </SafeAreaView>
+    
   )
 }
 
@@ -48,13 +53,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingTop: '3%',
-    paddingLeft: '5%',
-    paddingRight: '5%',
     gap: 30
   },
   containerWrapper: {
     flex: 1,
     width: '100%',
+    paddingLeft: '5%',
+    paddingRight: '5%'
   },
   containerInput:{
     paddingTop: 18,
@@ -77,5 +82,8 @@ const styles = StyleSheet.create({
   },
   textError: {
     color: 'red'
+  },
+  image:{
+    flex:1,
   }
 })

@@ -16,14 +16,15 @@ export default function App() {
     <NavigationContainer initialRouteName="Login">
       <Stack.Navigator>
         <Stack.Screen name="Login" screenOptions={{ headerTitleAlign: "center" }} options={({ navigation, route })=>(
-          {headerTitle: () => <Text style={styles.title}>Log In</Text>, headerTitleAlign: 'center',    headerStyle: {
+          {headerTitle: () => <Text style={styles.title}>Log In</Text>, headerTitleAlign: 'center',  headerStyle: {
             backgroundColor: '#fff',
             elevation:0,
             boderWidth: 0,
             textAlign:"center",
-            flex:1 ,
-            alignSelf: 'center',
+            flex:1,
+            alignSelf: "center",
             shadowOpacity: 0,
+
  
           },
           headerTintColor: '#0000',
@@ -31,9 +32,10 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
             backgroundColor: 'red',
+
           }, 
           headerRight: () => (
-            <Pressable style={styles.button} color="transparent"  onPress={()=>{
+            <Pressable style={styles.button} color="transparent" onPress={()=>{
               navigation.navigate('Cadastro')
             }} accessibilityLabel={'Botão para ir para a tela de cadastro'}>
             <Text style={styles.text}>Cadastrar-se</Text>
